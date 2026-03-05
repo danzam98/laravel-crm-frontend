@@ -1,5 +1,11 @@
 # Calico Spanish CRM & Organization Portal - Comprehensive Mockup Plan
 
+> **⚠️ This file has been superseded.** The canonical implementation plan is at [`docs/IMPLEMENTATION_PLAN.md`](./docs/IMPLEMENTATION_PLAN.md).
+>
+> This file is kept for reference but may be outdated. All updates should be made to the docs version.
+
+---
+
 ## Context
 
 Calico Spanish needs high-fidelity, Figma-level interactive HTML mockups for their Laravel-based Membership & Licensing CRM system. The mockups must support full navigation between all screens, clickable forms, modals, and demonstrate the complete user experience for:
