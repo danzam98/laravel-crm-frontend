@@ -7,7 +7,33 @@ This project implements the **Calico Spanish CRM & Organization Portal** - a Lar
 1. **Internal Admin CRM** — For Calico employees to manage organizations, billing, license pools, and support
 2. **Organization Portal** — For school customers to manage licenses, seats, roster, and School-to-Home access
 
-**Reference Implementation Plan:** `laravel-crm-mockups/IMPLEMENTATION_PLAN.md`
+**Reference Implementation Plan:** `docs/IMPLEMENTATION_PLAN.md`
+
+---
+
+## Project Structure
+
+This repository contains two distinct development workflows:
+
+### 1. HTML Mockups (`laravel-crm-mockups/`)
+Static HTML prototypes for **design approval** before production implementation.
+
+| Package | Version | Notes |
+|---------|---------|-------|
+| Vite | 5.x | Dev server + build pipeline |
+| Tailwind CSS | 4.x | CSS-first `@theme` config |
+| Chart.js | 4.x | Analytics charts |
+| Flatpickr | 4.x | Date pickers |
+| Lucide Icons | Latest | Icon system |
+
+**Purpose:** Visual design approval, stakeholder review, UX validation.
+
+**Not applicable to mockups:** TypeScript, shadcn/ui, Bun (uses npm).
+
+### 2. Production App (`src/`)
+Next.js React application (future implementation after mockup approval).
+
+See "Tech Stack Requirements" below for production dependencies.
 
 ---
 
@@ -50,7 +76,7 @@ New files are reserved for **genuinely new domains** that don't fit existing mod
 
 ---
 
-## Tech Stack Requirements
+## Tech Stack Requirements (Production App)
 
 | Package | Version | Notes |
 |---------|---------|-------|
@@ -60,6 +86,8 @@ New files are reserved for **genuinely new domains** that don't fit existing mod
 | Tailwind CSS | 4.x | CSS-first `@theme` config |
 | shadcn/ui | Latest | Radix UI primitives |
 | Bun | 1.x | Package manager |
+
+> **Note:** These requirements apply to the production `src/` application, not the `laravel-crm-mockups/` prototypes.
 
 ---
 
@@ -332,6 +360,9 @@ For wizards (`seats/assign`, `school-to-home/setup`):
 
 ## Route Structure
 
+> **Note:** Routes below show the production Next.js App Router structure (`src/app/`).
+> Mockup routes are in `laravel-crm-mockups/src/admin/` and `laravel-crm-mockups/src/portal/` as static HTML files.
+
 ### Admin CRM Routes (`/admin/`)
 
 ```
@@ -377,10 +408,13 @@ For wizards (`seats/assign`, `school-to-home/setup`):
 
 ## Implementation Phases
 
+### HTML Mockups (`laravel-crm-mockups/`)
+
 **Phase 1: Shared Infrastructure**
 - Shared CSS with Tailwind `@theme` tokens
-- Command palette and notification components
+- Command palette (stub) and notification components
 - Full-featured DataTable component
+- Seed data JSON fixtures
 
 **Phase 2: Admin CRM Core**
 - Admin layout (sidebar, header)
@@ -400,11 +434,23 @@ For wizards (`seats/assign`, `school-to-home/setup`):
 - School-to-Home configuration
 - Settings
 
-**Phase 6: Polish**
-- All links working
+**Phase 6: Polish & Verification**
+- All links working (link integrity check)
 - All modals interactive
 - Loading/empty/error states
-- Mobile responsive
+- Mobile responsive (breakpoint testing)
+- Command palette full route index
+- Playwright smoke tests
+- Accessibility audit (axe-core)
+
+### Production App (`src/`)
+
+**Phase 7: Production Implementation**
+- Convert approved mockups to Next.js React components
+- Implement TypeScript types from seed data schemas
+- Connect to Laravel backend APIs
+- Add authentication and authorization
+- Production deployment
 
 ---
 
@@ -444,8 +490,15 @@ See `best-practices/` folder:
 ## Quick Reference
 
 ```bash
-# Development
-bun dev              # Start dev server
+# Mockups Development (laravel-crm-mockups/)
+cd laravel-crm-mockups
+npm run dev          # Start Vite dev server (http://localhost:5173)
+npm run build        # Build to /dist
+npm run preview      # Preview built mockups
+npx linkinator ./dist --recurse  # Check for broken links
+
+# Production Development (src/)
+bun dev              # Start Next.js dev server
 bun build            # Build for production
 bun lint             # ESLint
 bun typecheck        # TypeScript check
