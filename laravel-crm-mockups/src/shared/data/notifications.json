@@ -1,0 +1,55 @@
+[
+  {
+    "id": "notif-001",
+    "type": "alert",
+    "title": "License Expiring Soon",
+    "description": "Lincoln Elementary has 3 licenses expiring in 14 days",
+    "link": "/admin/license-pools/detail.html?id=lp-003",
+    "createdAt": "2024-03-15T14:25:00Z",
+    "read": false
+  },
+  {
+    "id": "notif-002",
+    "type": "payment",
+    "title": "Payment Received",
+    "description": "Oak Valley School District - $2,400.00",
+    "link": "/admin/billing-accounts/detail.html?id=ba-002",
+    "createdAt": "2024-03-15T13:00:00Z",
+    "read": false
+  },
+  {
+    "id": "notif-003",
+    "type": "support",
+    "title": "New Support Ticket",
+    "description": "Ticket #1234 created by Sarah Johnson",
+    "link": "/admin/support/detail.html?id=ticket-1234",
+    "createdAt": "2024-03-15T12:00:00Z",
+    "read": false
+  },
+  {
+    "id": "notif-004",
+    "type": "activity",
+    "title": "Seat Assignment",
+    "description": "15 new seats assigned at Riverside Academy",
+    "link": "/admin/organizations/detail.html?id=org-003",
+    "createdAt": "2024-03-15T11:00:00Z",
+    "read": true
+  },
+  {
+    "id": "notif-005",
+    "type": "alert",
+    "title": "Failed Payment",
+    "description": "Payment failed for Billing Account #BA-2345",
+    "link": "/admin/billing-accounts/detail.html?id=ba-004",
+    "createdAt": "2024-03-15T09:00:00Z",
+    "read": true
+  },
+  {
+    "id": "notif-006",
+    "type": "system",
+    "title": "System Update",
+    "description": "Scheduled maintenance tonight at 2:00 AM EST",
+    "createdAt": "2024-03-14T16:00:00Z",
+    "read": true
+  }
+]
