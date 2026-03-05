@@ -9,6 +9,28 @@ Calico Spanish needs high-fidelity, Figma-level interactive HTML mockups for the
 
 The mockups will follow HubSpot-style 3-column layouts for detail views, include command palette search, notification center, full-featured tables, inline editing, and interactive charts.
 
+> **Important:** This plan covers the `laravel-crm-mockups/` folder — static HTML prototypes for design approval. The production Next.js React app (described in `AGENTS.md`) will be implemented in Phase 7 after mockup approval.
+
+---
+
+## Tech Stack (Mockups)
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| Vite | 5.x | Dev server + build pipeline |
+| Tailwind CSS | 4.x | CSS-first styling |
+| Chart.js | 4.x | Analytics dashboard charts |
+| Flatpickr | 4.x | Date pickers for filters/forms |
+| Lucide Icons | Latest | Icon system (consistent with shadcn/ui) |
+
+**Font:** Inter (Google Fonts) with `font-display: swap`
+
+**Browser Support:**
+- Chrome 100+
+- Firefox 100+
+- Safari 15+
+- Edge 100+
+
 ---
 
 ## Brand Colors
@@ -123,6 +145,121 @@ laravel-crm-mockups/
         ├── administrators.html       # Manage org admins
         └── profile.html              # Org profile
 ```
+
+---
+
+## Mock Data & Demo State
+
+### Seed Data Schemas
+
+#### organizations.json
+```json
+{
+  "id": "org_001",
+  "name": "Springfield Elementary",
+  "type": "school|district|co-op",
+  "status": "active|inactive|suspended",
+  "primaryContact": {
+    "name": "Lisa Simpson",
+    "email": "lisa@springfield.edu",
+    "phone": "(555) 123-4567"
+  },
+  "metrics": {
+    "totalSeats": 150,
+    "usedSeats": 120,
+    "utilizationPercent": 80,
+    "mrr": 450.00
+  },
+  "tags": ["premium", "at-risk"],
+  "createdAt": "2024-01-15T10:30:00Z"
+}
+```
+
+#### licensePools.json
+```json
+{
+  "id": "pool_001",
+  "organizationId": "org_001",
+  "planKey": "base|premium",
+  "duration": "1-year|3-year|5-year|custom",
+  "status": "active|expiring|at-risk|expired",
+  "seats": { "total": 50, "used": 42, "available": 8 },
+  "dates": {
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "daysRemaining": 120
+  },
+  "fundingType": "subscription|grant|purchase",
+  "stripeSubscriptionId": "sub_xxx|null"
+}
+```
+
+#### users.json
+```json
+{
+  "id": "user_001",
+  "organizationId": "org_001",
+  "email": "teacher@school.edu",
+  "name": { "first": "Jane", "last": "Doe" },
+  "role": "owner|admin|member",
+  "status": "active|pending|inactive",
+  "seats": [{ "poolId": "pool_001", "assignedAt": "2024-02-01" }],
+  "lastActiveAt": "2024-03-01T14:30:00Z"
+}
+```
+
+#### notifications.json
+```json
+{
+  "id": "notif_001",
+  "type": "alert|update|system",
+  "title": "License expiring soon",
+  "message": "Springfield Elementary Base license expires in 30 days",
+  "read": false,
+  "createdAt": "2024-03-01T09:00:00Z",
+  "link": "/admin/license-pools/pool_001"
+}
+```
+
+### LocalStorage State Management
+
+```javascript
+// state.js - Demo state with fallback
+const memoryStore = {};
+
+const storage = {
+  get: (key) => {
+    try {
+      return JSON.parse(localStorage.getItem(`crm_${key}`));
+    } catch {
+      return memoryStore[key]; // Fallback for private browsing
+    }
+  },
+  set: (key, value) => {
+    try {
+      localStorage.setItem(`crm_${key}`, JSON.stringify(value));
+    } catch {
+      memoryStore[key] = value;
+    }
+  }
+};
+
+// Impersonation state
+const impersonation = {
+  active: false,
+  orgId: null,
+  orgName: null,
+  startedAt: null
+};
+```
+
+### Demo Scenarios
+
+Access via URL param: `?scenario=<name>`
+- `happy-path` — Normal usage, healthy metrics (default)
+- `at-risk` — Expiring licenses, failed payments, low utilization
+- `new-org` — Empty states, onboarding prompts visible
+- `large-data` — 500+ rows for table performance testing
 
 ---
 
@@ -377,60 +514,253 @@ laravel-crm-mockups/
 
 ---
 
+## Responsive Design
+
+### Breakpoints (Tailwind Defaults)
+```css
+sm: 640px   /* Mobile landscape */
+md: 768px   /* Tablet portrait */
+lg: 1024px  /* Tablet landscape / small desktop */
+xl: 1280px  /* Desktop */
+```
+
+### 3-Column Layout Collapse
+| Viewport | Layout | Behavior |
+|----------|--------|----------|
+| Desktop (xl+) | 3-6-3 columns | Full layout |
+| Tablet (lg) | 0-8-4 columns | Left sidebar hidden, toggle button |
+| Mobile (md-) | Single column | Stacked, tabs become accordion |
+
+### Mobile Navigation
+- Sidebar becomes slide-out drawer
+- Command palette: full-screen on mobile
+- Tables: horizontal scroll with sticky first column
+
+---
+
+## UI State Patterns
+
+### Error States
+| Context | Message | CTA |
+|---------|---------|-----|
+| Network failure | "Unable to load data. Check your connection." | Retry button |
+| Empty search | "No results for '{query}'" | Clear search link |
+| No permissions | "You don't have access to this resource" | Contact admin link |
+| Form validation | Inline field errors + summary at top | Focus first error |
+| 404 page | "Page not found" | Return to dashboard |
+
+### Loading States
+- Use skeleton screens matching content shape
+- Minimum display time: 300ms (prevent flash)
+- Announce to screen readers: `aria-busy="true"` on container
+- Table loading: Show skeleton rows (5 rows default)
+
+### Empty States
+| Context | Message | CTA |
+|---------|---------|-----|
+| No organizations | "No organizations yet" | Create first organization |
+| No search results | "No results for '{query}'" | Clear filters |
+| No license pools | "No licenses for this organization" | Add license |
+| No seat assignments | "No seats assigned yet" | Assign first seat |
+
+### Success States
+- Toast notification (bottom-right, auto-dismiss 5s)
+- Inline success message for forms
+- Activity feed entry added (real-time feel)
+
+---
+
+## Bulk Import Specification
+
+### Validation Rules
+- **Required fields:** email (all others optional)
+- **Email format:** RFC 5322 compliant
+- **Duplicate detection:** By email within same organization
+- **Row limit:** 500 per import
+
+### Import Flow
+1. **Upload:** Drag-drop or file picker (CSV only)
+2. **Preview:** Show first 10 rows, detect columns
+3. **Map columns:** Auto-map common headers, manual override
+4. **Validate:** Preflight check, highlight errors
+5. **Import:** Progress bar with row count
+6. **Summary:** "42 created, 3 updated, 5 failed"
+
+### Error Handling
+- Downloadable CSV of failed rows with error reasons
+- Row-level error messages (line number + issue)
+- Partial success allowed (continue on non-fatal errors)
+
+---
+
 ## Implementation Approach
 
+### Phase 0: Build Pipeline Setup
+1. Initialize `package.json` with Vite, Tailwind CSS 4.x
+2. Configure `vite.config.js` for multi-page HTML
+3. Set up `tailwind.config.js` with design tokens
+4. Install dependencies: Chart.js, Flatpickr, Lucide Icons
+5. Verify `npm run dev` and `npm run build` work
+
 ### Phase 1: Shared Infrastructure
-1. Create `shared/styles.css` with Tailwind config and custom component styles
-2. Create `shared/components.js` with reusable JS for modals, dropdowns, tabs, search
-3. Build command palette and notification components
+1. Create `shared/styles.css` with Tailwind `@theme` tokens
+2. Create `shared/components.js` (modals, dropdowns, tabs, toast)
+3. Create seed data JSON fixtures (organizations, pools, users, notifications)
+4. Build command palette (stub version - basic actions only)
+5. Build notification dropdown component
+6. Set up LocalStorage state management with fallback
 
 ### Phase 2: Admin CRM Core
 1. Admin layout template (sidebar, header, command palette)
-2. Dashboard page
+2. Dashboard page with attention items
 3. Organizations list with full table features
-4. Organization detail (3-column with tabs)
+4. Organization detail (3-column with all tabs)
 5. License pools list and detail
 6. Users list and detail
+7. Impersonation banner and state management
 
 ### Phase 3: Admin CRM Extended
-1. Billing accounts pages
-2. Analytics dashboard with charts
+1. Billing accounts pages with invoices
+2. Analytics dashboard with Chart.js charts
 3. Orders pages
-4. Audit logs
+4. Audit logs with detail view
 5. Settings pages
 
 ### Phase 4: Organization Portal Core
-1. Portal layout template (different sidebar, Calico branding)
-2. Dashboard with onboarding
+1. Portal layout template (Calico branding)
+2. Dashboard with onboarding tutorial
 3. Licenses list with filters
-4. License detail
-5. Seat management and assign flow
+4. License detail with utilization visualization
+5. Seat management and assign flow (with edge states)
 
 ### Phase 5: Organization Portal Extended
-1. Roster management and invite flow
+1. Roster management with bulk import flow
 2. School-to-Home overview and configuration
 3. Classroom management
 4. Settings pages
+5. Help/contact pages
 
-### Phase 6: Polish & Connect
-1. Ensure all links work between pages
-2. Add all modal interactions
-3. Add form validation states
-4. Add empty/loading states
-5. Final visual polish
+### Phase 6: Polish & Verification
+1. Command palette full route index (all pages now exist)
+2. Link integrity check (fix all broken links)
+3. All modal interactions complete
+4. Form validation + error states
+5. Empty/loading states for all entities
+6. Mobile responsive testing (375px - 1280px)
+7. Playwright smoke tests passing
+8. Accessibility audit (axe-core, 0 critical violations)
+
+### Phase 7: Production Implementation (Future)
+Convert approved mockups to Next.js React application:
+1. Set up Next.js 16 with TypeScript
+2. Convert HTML templates to React components
+3. Implement shadcn/ui components
+4. Connect to Laravel backend APIs
+5. Add authentication/authorization
+6. Deploy to production
 
 ---
 
 ## Verification
 
-- Open `admin/index.html` and navigate through all admin pages
-- Open `portal/index.html` and navigate through all portal pages
-- Test command palette (Cmd+K)
-- Test all modal triggers
-- Test all dropdown menus
-- Verify all table filters work
-- Verify form submissions show success states
-- Check responsive behavior at tablet/mobile widths
+### Automated Tests (Playwright)
+
+```javascript
+// tests/smoke.spec.js
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+test('Admin: Dashboard loads and shows stats', async ({ page }) => {
+  await page.goto('/dist/admin/index.html');
+  await expect(page.locator('[data-testid="stat-active-orgs"]')).toBeVisible();
+});
+
+test('Admin: Command palette opens with Cmd+K', async ({ page }) => {
+  await page.goto('/dist/admin/index.html');
+  await page.keyboard.press('Meta+k');
+  await expect(page.locator('[data-testid="command-palette"]')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('[data-testid="command-palette"]')).not.toBeVisible();
+});
+
+test('Admin: Organization table sorting works', async ({ page }) => {
+  await page.goto('/dist/admin/organizations/index.html');
+  await page.click('th[data-sort="name"]');
+  // Verify sort indicator appears
+  await expect(page.locator('th[data-sort="name"] .sort-asc')).toBeVisible();
+});
+
+test('Portal: Assign seat flow completes', async ({ page }) => {
+  await page.goto('/dist/portal/seats/assign.html');
+  await page.click('[data-testid="select-license"]');
+  await page.click('[data-testid="license-option"]:first-child');
+  await page.click('[data-testid="select-user"]');
+  await page.click('[data-testid="user-option"]:first-child');
+  await page.click('[data-testid="confirm-assign"]');
+  await expect(page.locator('[data-testid="success-message"]')).toBeVisible();
+});
+
+test('Accessibility: No critical violations on dashboard', async ({ page }) => {
+  await page.goto('/dist/admin/index.html');
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations.filter(v => v.impact === 'critical')).toHaveLength(0);
+});
+```
+
+### Link Integrity Check
+```bash
+# Run after build
+npx linkinator ./dist --recurse --skip "^(?!file:)"
+```
+
+### Manual Verification Checklist
+
+**Phase 1 Complete When:**
+- [ ] `npm run dev` starts Vite server
+- [ ] `npm run build` outputs to `/dist`
+- [ ] Tokens render correctly (check purple/green in browser)
+- [ ] Command palette opens (Cmd+K) and closes (Esc)
+- [ ] Notification dropdown toggles
+
+**Phase 2 Complete When:**
+- [ ] Navigate: Dashboard → Orgs List → Org Detail
+- [ ] Table sorting works (click Name header)
+- [ ] Table filtering works (select Type filter)
+- [ ] Bulk selection checkbox works
+- [ ] All tabs in Org Detail render content
+
+**Phase 3 Complete When:**
+- [ ] Billing account detail renders with invoices tab
+- [ ] Analytics charts render (revenue, utilization)
+- [ ] Audit log entries display with timestamps
+
+**Phase 4 Complete When:**
+- [ ] Portal dashboard shows onboarding checklist
+- [ ] License cards display utilization bars
+- [ ] Seat assign flow completes all steps
+
+**Phase 5 Complete When:**
+- [ ] Roster bulk import shows preview
+- [ ] School-to-Home portal config saves state
+- [ ] Classroom creation modal works
+
+**Phase 6 Complete When:**
+- [ ] Link integrity check passes (0 broken links)
+- [ ] All modals open/close with focus management
+- [ ] Empty states display for each entity type
+- [ ] Mobile responsive at 375px width
+- [ ] axe-core reports 0 critical violations
+
+---
+
+## QA Handoff Process
+
+Before production implementation:
+1. Share `/dist` folder with stakeholders
+2. Review critical paths together (listed below)
+3. Collect feedback on visual design, flow, missing elements
+4. Iterate on mockups until approved
+5. Sign-off recorded (email/Slack/ticket)
 
 ---
 
