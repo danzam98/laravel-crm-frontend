@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel CRM - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        sidebar: '#1e1b4b',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-sidebar text-white flex flex-col">
+            <!-- Logo -->
+            <div class="p-4 border-b border-indigo-800">
+                <h1 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fas fa-cube text-primary"></i>
+                    Laravel CRM
+                </h1>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 space-y-1">
+                <!-- CRM Section -->
+                <p class="text-xs uppercase text-indigo-400 font-semibold mb-2 mt-4">CRM</p>
+                <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white">
+                    <i class="fas fa-chart-line w-5"></i>
+                    Dashboard
+                </a>
+                <a href="contacts.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-users w-5"></i>
+                    Contacts
+                </a>
+                <a href="companies.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-building w-5"></i>
+                    Companies
+                </a>
+                <a href="deals.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-handshake w-5"></i>
+                    Deals
+                </a>
+                <a href="tasks.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-tasks w-5"></i>
+                    Tasks
+                </a>
+                <a href="calendar.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-calendar w-5"></i>
+                    Calendar
+                </a>
+                <a href="emails.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-envelope w-5"></i>
+                    Emails
+                </a>
+
+                <!-- eCommerce Section -->
+                <p class="text-xs uppercase text-indigo-400 font-semibold mb-2 mt-6">eCommerce</p>
+                <a href="products.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-box w-5"></i>
+                    Products
+                </a>
+                <a href="orders.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-shopping-cart w-5"></i>
+                    Orders
+                </a>
+                <a href="inventory.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-warehouse w-5"></i>
+                    Inventory
+                </a>
+                <a href="customers.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-user-tag w-5"></i>
+                    Customers
+                </a>
+
+                <!-- Analytics Section -->
+                <p class="text-xs uppercase text-indigo-400 font-semibold mb-2 mt-6">Analytics</p>
+                <a href="analytics.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-chart-bar w-5"></i>
+                    Reports
+                </a>
+            </nav>
+
+            <!-- User Menu -->
+            <div class="p-4 border-t border-indigo-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                        <span class="font-semibold">JD</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-indigo-300">Admin</p>
+                    </div>
+                    <button class="text-indigo-300 hover:text-white">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white border-b px-6 py-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Dashboard</h2>
+                    <p class="text-slate-500">Welcome back, John</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    </div>
+                    <button class="relative p-2 text-slate-500 hover:text-slate-700">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-indigo-600">
+                        <i class="fas fa-plus mr-2"></i>New Deal
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="flex-1 overflow-auto p-6">
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">Total Revenue</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1">$284,532</p>
+                                <p class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> 12.5% from last month</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-dollar-sign text-green-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">Active Deals</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1">156</p>
+                                <p class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> 8 new this week</p>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-handshake text-blue-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">Total Contacts</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1">2,847</p>
+                                <p class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up"></i> 23 new this week</p>
+                            </div>
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-users text-purple-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">Pending Orders</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1">42</p>
+                                <p class="text-amber-500 text-sm mt-2"><i class="fas fa-clock"></i> 5 require attention</p>
+                            </div>
+                            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-amber-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-3 gap-6 mb-6">
+                    <!-- Revenue Chart -->
+                    <div class="col-span-2 bg-white rounded-xl p-6 shadow-sm border">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-slate-800">Revenue Overview</h3>
+                            <select class="border rounded-lg px-3 py-1 text-sm">
+                                <option>Last 7 days</option>
+                                <option>Last 30 days</option>
+                                <option>Last 3 months</option>
+                            </select>
+                        </div>
+                        <div class="h-64 flex items-end justify-between gap-4 px-4">
+                            <!-- Placeholder bars -->
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary/20 rounded-t" style="height: 45%"></div>
+                                <span class="text-xs text-slate-500">Mon</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary/20 rounded-t" style="height: 65%"></div>
+                                <span class="text-xs text-slate-500">Tue</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary/20 rounded-t" style="height: 55%"></div>
+                                <span class="text-xs text-slate-500">Wed</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary/20 rounded-t" style="height: 80%"></div>
+                                <span class="text-xs text-slate-500">Thu</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary rounded-t" style="height: 95%"></div>
+                                <span class="text-xs text-slate-500">Fri</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary/20 rounded-t" style="height: 70%"></div>
+                                <span class="text-xs text-slate-500">Sat</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-primary/20 rounded-t" style="height: 40%"></div>
+                                <span class="text-xs text-slate-500">Sun</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deal Pipeline -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <h3 class="text-lg font-semibold text-slate-800 mb-6">Deal Pipeline</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-600">Lead</span>
+                                    <span class="font-medium">32</span>
+                                </div>
+                                <div class="h-2 bg-slate-100 rounded-full">
+                                    <div class="h-2 bg-slate-400 rounded-full" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-600">Qualified</span>
+                                    <span class="font-medium">45</span>
+                                </div>
+                                <div class="h-2 bg-slate-100 rounded-full">
+                                    <div class="h-2 bg-blue-500 rounded-full" style="width: 55%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-600">Proposal</span>
+                                    <span class="font-medium">28</span>
+                                </div>
+                                <div class="h-2 bg-slate-100 rounded-full">
+                                    <div class="h-2 bg-amber-500 rounded-full" style="width: 35%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-600">Negotiation</span>
+                                    <span class="font-medium">19</span>
+                                </div>
+                                <div class="h-2 bg-slate-100 rounded-full">
+                                    <div class="h-2 bg-purple-500 rounded-full" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-600">Won</span>
+                                    <span class="font-medium">32</span>
+                                </div>
+                                <div class="h-2 bg-slate-100 rounded-full">
+                                    <div class="h-2 bg-green-500 rounded-full" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="grid grid-cols-2 gap-6">
+                    <!-- Recent Activity -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4">Recent Activity</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-slate-800">Deal "Enterprise License" won</p>
+                                    <p class="text-sm text-slate-500">$45,000 closed by Sarah Wilson</p>
+                                    <p class="text-xs text-slate-400 mt-1">2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user-plus text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-slate-800">New contact added</p>
+                                    <p class="text-sm text-slate-500">Michael Chen from TechCorp</p>
+                                    <p class="text-xs text-slate-400 mt-1">4 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-slate-800">Email campaign sent</p>
+                                    <p class="text-sm text-slate-500">Q1 Newsletter to 1,247 contacts</p>
+                                    <p class="text-xs text-slate-400 mt-1">Yesterday</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shopping-bag text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-slate-800">Order #4521 shipped</p>
+                                    <p class="text-sm text-slate-500">3 items to Acme Industries</p>
+                                    <p class="text-xs text-slate-400 mt-1">Yesterday</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Tasks -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-slate-800">Upcoming Tasks</h3>
+                            <a href="tasks.html" class="text-primary text-sm hover:underline">View All</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5 rounded border-slate-300">
+                                <div class="flex-1">
+                                    <p class="text-slate-800">Follow up with Acme Corp</p>
+                                    <p class="text-sm text-slate-500">Due today at 3:00 PM</p>
+                                </div>
+                                <span class="px-2 py-1 bg-red-100 text-red-700 text-xs rounded-full">High</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5 rounded border-slate-300">
+                                <div class="flex-1">
+                                    <p class="text-slate-800">Prepare Q2 proposal</p>
+                                    <p class="text-sm text-slate-500">Due tomorrow</p>
+                                </div>
+                                <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full">Medium</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5 rounded border-slate-300">
+                                <div class="flex-1">
+                                    <p class="text-slate-800">Review inventory report</p>
+                                    <p class="text-sm text-slate-500">Due in 3 days</p>
+                                </div>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded-full">Low</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <input type="checkbox" class="w-5 h-5 rounded border-slate-300">
+                                <div class="flex-1">
+                                    <p class="text-slate-800">Schedule demo with GlobalTech</p>
+                                    <p class="text-sm text-slate-500">Due in 5 days</p>
+                                </div>
+                                <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full">Medium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
