@@ -11,6 +11,21 @@ This project implements the **Calico Spanish CRM & Organization Portal** - a Lar
 
 ---
 
+## ⚠️ Current Development Phase: MOCKUPS ONLY
+
+**We are currently building HTML mockups (Phases 1-6).**
+
+Do NOT:
+- Create Next.js pages or React components in `src/`
+- Use TypeScript, shadcn/ui, or Bun
+- Work on production implementation (Phase 7)
+
+All work should be in `laravel-crm-mockups/` using Vite + vanilla HTML/CSS/JS.
+
+Phase 7 (Next.js production app) begins **only after mockup approval**.
+
+---
+
 ## Project Structure
 
 This repository contains two distinct development workflows:
