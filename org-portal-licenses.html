@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calico Spanish - Licenses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        sidebar: '#1e1b4b',
+                        calico: {
+                            orange: '#f97316',
+                            teal: '#0d9488',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-sidebar text-white flex flex-col">
+            <div class="p-4 border-b border-indigo-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-calico-orange rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">CS</span>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">Calico Spanish</h1>
+                        <p class="text-xs text-indigo-300">Organization Portal</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1 p-4 space-y-1">
+                <a href="org-portal-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-home w-5"></i>
+                    Dashboard
+                </a>
+                <a href="org-portal-licenses.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white">
+                    <i class="fas fa-id-card w-5"></i>
+                    Licenses
+                </a>
+                <a href="org-portal-seats.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-users w-5"></i>
+                    Seat Management
+                </a>
+                <a href="org-portal-roster.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-user-plus w-5"></i>
+                    Roster
+                </a>
+                <a href="org-portal-school-to-home.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                    <i class="fas fa-house-laptop w-5"></i>
+                    School-to-Home
+                    <span class="ml-auto px-2 py-0.5 bg-calico-teal text-white text-xs rounded">Premium</span>
+                </a>
+                <div class="pt-4 mt-4 border-t border-indigo-800">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                        <i class="fas fa-credit-card w-5"></i>
+                        Billing
+                        <i class="fas fa-external-link-alt ml-auto text-xs"></i>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-800 text-indigo-200">
+                        <i class="fas fa-cog w-5"></i>
+                        Settings
+                    </a>
+                </div>
+            </nav>
+            <div class="p-4 border-t border-indigo-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-calico-teal flex items-center justify-center">
+                        <span class="font-semibold text-sm">AA</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium truncate">Amanda Adams</p>
+                        <p class="text-xs text-indigo-300">Acme Academy</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white border-b px-6 py-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Licenses</h2>
+                    <p class="text-slate-500">View and manage your curriculum licenses</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-4 py-2 border rounded-lg hover:bg-slate-50">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-indigo-600">
+                        <i class="fas fa-plus mr-2"></i>Request Additional Seats
+                    </button>
+                </div>
+            </header>
+
+            <!-- Licenses Content -->
+            <div class="flex-1 overflow-auto p-6">
+                <!-- Summary Bar -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border mb-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-8">
+                            <div>
+                                <p class="text-sm text-slate-500">Total Licenses</p>
+                                <p class="text-2xl font-bold text-slate-800">5</p>
+                            </div>
+                            <div class="h-10 w-px bg-slate-200"></div>
+                            <div>
+                                <p class="text-sm text-slate-500">Total Seats</p>
+                                <p class="text-2xl font-bold text-slate-800">105</p>
+                            </div>
+                            <div class="h-10 w-px bg-slate-200"></div>
+                            <div>
+                                <p class="text-sm text-slate-500">Seats Assigned</p>
+                                <p class="text-2xl font-bold text-green-600">78</p>
+                            </div>
+                            <div class="h-10 w-px bg-slate-200"></div>
+                            <div>
+                                <p class="text-sm text-slate-500">Seats Available</p>
+                                <p class="text-2xl font-bold text-indigo-600">27</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full">3 Active</span>
+                            <span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-full">1 Expiring Soon</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 rounded-full">1 Expired</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-slate-500">Type:</span>
+                            <select class="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>All Types</option>
+                                <option>Premium</option>
+                                <option>Base</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-slate-500">Duration:</span>
+                            <select class="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>All Durations</option>
+                                <option>1-Year</option>
+                                <option>3-Year</option>
+                                <option>5-Year</option>
+                                <option>Custom</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-slate-500">Status:</span>
+                            <select class="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>All Statuses</option>
+                                <option>Active</option>
+                                <option>Expiring Soon</option>
+                                <option>At Risk</option>
+                                <option>Expired</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-slate-500">Sort by:</span>
+                            <select class="border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>Expiration (soonest first)</option>
+                                <option>Expiration (latest first)</option>
+                                <option>Type (Premium first)</option>
+                                <option>Type (Base first)</option>
+                                <option>Seats (most first)</option>
+                                <option>Seats (least first)</option>
+                            </select>
+                        </div>
+                        <button class="ml-auto text-primary text-sm hover:underline">Clear Filters</button>
+                    </div>
+                </div>
+
+                <!-- License Cards -->
+                <div class="space-y-4">
+                    <!-- License 1: Base 1-Year - Expiring Soon -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                        <div class="flex">
+                            <!-- Left stripe -->
+                            <div class="w-2 bg-amber-500"></div>
+                            <!-- Content -->
+                            <div class="flex-1 p-5">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-slate-800">Curriculum License</h3>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs font-medium rounded">Base</span>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded">1-Year</span>
+                                            <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full flex items-center gap-1">
+                                                <i class="fas fa-exclamation-triangle text-[10px]"></i> Expiring Soon
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mb-3">License ID: LIC-2024-0892</p>
+
+                                        <div class="grid grid-cols-4 gap-6">
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Seats</p>
+                                                <div class="flex items-baseline gap-1">
+                                                    <span class="text-xl font-bold text-slate-800">8</span>
+                                                    <span class="text-slate-400">/</span>
+                                                    <span class="text-slate-600">10</span>
+                                                </div>
+                                                <div class="w-24 h-1.5 bg-slate-100 rounded-full mt-1">
+                                                    <div class="h-1.5 bg-amber-500 rounded-full" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Start Date</p>
+                                                <p class="font-medium text-slate-700">May 1, 2025</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Expiration</p>
+                                                <p class="font-medium text-amber-600">Apr 30, 2026</p>
+                                                <p class="text-xs text-amber-500">56 days remaining</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">School-to-Home</p>
+                                                <p class="text-slate-400 text-sm">Not included</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 text-sm">
+                                            <i class="fas fa-redo mr-1"></i> Renew
+                                        </button>
+                                        <button class="px-4 py-2 border rounded-lg hover:bg-slate-50 text-sm">
+                                            Manage Seats
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- License 2: Premium 3-Year - Active -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                        <div class="flex">
+                            <div class="w-2 bg-calico-teal"></div>
+                            <div class="flex-1 p-5">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-slate-800">Curriculum License</h3>
+                                            <span class="px-2 py-0.5 bg-calico-teal/10 text-calico-teal text-xs font-medium rounded">Premium</span>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded">3-Year</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Active</span>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mb-3">License ID: LIC-2024-0756</p>
+
+                                        <div class="grid grid-cols-4 gap-6">
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Seats</p>
+                                                <div class="flex items-baseline gap-1">
+                                                    <span class="text-xl font-bold text-slate-800">18</span>
+                                                    <span class="text-slate-400">/</span>
+                                                    <span class="text-slate-600">25</span>
+                                                </div>
+                                                <div class="w-24 h-1.5 bg-slate-100 rounded-full mt-1">
+                                                    <div class="h-1.5 bg-calico-teal rounded-full" style="width: 72%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Start Date</p>
+                                                <p class="font-medium text-slate-700">Aug 15, 2024</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Expiration</p>
+                                                <p class="font-medium text-slate-700">Aug 15, 2027</p>
+                                                <p class="text-xs text-slate-400">2 years, 5 months remaining</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">School-to-Home</p>
+                                                <p class="text-calico-teal text-sm flex items-center gap-1">
+                                                    <i class="fas fa-check-circle"></i> Enabled
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="px-4 py-2 border border-calico-teal text-calico-teal rounded-lg hover:bg-calico-teal/5 text-sm">
+                                            <i class="fas fa-house-laptop mr-1"></i> School-to-Home
+                                        </button>
+                                        <button class="px-4 py-2 border rounded-lg hover:bg-slate-50 text-sm">
+                                            Manage Seats
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- License 3: Premium 5-Year - Active -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                        <div class="flex">
+                            <div class="w-2 bg-calico-teal"></div>
+                            <div class="flex-1 p-5">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-slate-800">Curriculum License</h3>
+                                            <span class="px-2 py-0.5 bg-calico-teal/10 text-calico-teal text-xs font-medium rounded">Premium</span>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded">5-Year</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Active</span>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mb-3">License ID: LIC-2024-0621</p>
+
+                                        <div class="grid grid-cols-4 gap-6">
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Seats</p>
+                                                <div class="flex items-baseline gap-1">
+                                                    <span class="text-xl font-bold text-slate-800">42</span>
+                                                    <span class="text-slate-400">/</span>
+                                                    <span class="text-slate-600">50</span>
+                                                </div>
+                                                <div class="w-24 h-1.5 bg-slate-100 rounded-full mt-1">
+                                                    <div class="h-1.5 bg-calico-teal rounded-full" style="width: 84%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Start Date</p>
+                                                <p class="font-medium text-slate-700">Jun 1, 2024</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Expiration</p>
+                                                <p class="font-medium text-slate-700">Jun 1, 2029</p>
+                                                <p class="text-xs text-slate-400">4 years, 3 months remaining</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">School-to-Home</p>
+                                                <p class="text-calico-teal text-sm flex items-center gap-1">
+                                                    <i class="fas fa-check-circle"></i> Enabled
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="px-4 py-2 border border-calico-teal text-calico-teal rounded-lg hover:bg-calico-teal/5 text-sm">
+                                            <i class="fas fa-house-laptop mr-1"></i> School-to-Home
+                                        </button>
+                                        <button class="px-4 py-2 border rounded-lg hover:bg-slate-50 text-sm">
+                                            Manage Seats
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- License 4: Base 1-Year - Active -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                        <div class="flex">
+                            <div class="w-2 bg-green-500"></div>
+                            <div class="flex-1 p-5">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-slate-800">Curriculum License</h3>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs font-medium rounded">Base</span>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded">1-Year</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Active</span>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mb-3">License ID: LIC-2025-0134</p>
+
+                                        <div class="grid grid-cols-4 gap-6">
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Seats</p>
+                                                <div class="flex items-baseline gap-1">
+                                                    <span class="text-xl font-bold text-slate-800">10</span>
+                                                    <span class="text-slate-400">/</span>
+                                                    <span class="text-slate-600">15</span>
+                                                </div>
+                                                <div class="w-24 h-1.5 bg-slate-100 rounded-full mt-1">
+                                                    <div class="h-1.5 bg-green-500 rounded-full" style="width: 67%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Start Date</p>
+                                                <p class="font-medium text-slate-700">Jan 15, 2026</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Expiration</p>
+                                                <p class="font-medium text-slate-700">Jan 15, 2027</p>
+                                                <p class="text-xs text-slate-400">10 months remaining</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">School-to-Home</p>
+                                                <p class="text-slate-400 text-sm">Not included</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="px-4 py-2 border rounded-lg hover:bg-slate-50 text-sm">
+                                            Manage Seats
+                                        </button>
+                                        <button class="px-4 py-2 text-primary text-sm hover:underline">
+                                            Upgrade to Premium
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- License 5: Base 1-Year - Expired -->
+                    <div class="bg-white rounded-xl shadow-sm border overflow-hidden opacity-60">
+                        <div class="flex">
+                            <div class="w-2 bg-slate-300"></div>
+                            <div class="flex-1 p-5">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="text-lg font-semibold text-slate-800">Curriculum License</h3>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs font-medium rounded">Base</span>
+                                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded">1-Year</span>
+                                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-xs rounded-full">Expired</span>
+                                        </div>
+                                        <p class="text-sm text-slate-500 mb-3">License ID: LIC-2023-0445</p>
+
+                                        <div class="grid grid-cols-4 gap-6">
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Seats</p>
+                                                <div class="flex items-baseline gap-1">
+                                                    <span class="text-xl font-bold text-slate-500">0</span>
+                                                    <span class="text-slate-400">/</span>
+                                                    <span class="text-slate-500">5</span>
+                                                </div>
+                                                <div class="w-24 h-1.5 bg-slate-100 rounded-full mt-1">
+                                                    <div class="h-1.5 bg-slate-300 rounded-full" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Start Date</p>
+                                                <p class="font-medium text-slate-500">Jan 1, 2024</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">Expiration</p>
+                                                <p class="font-medium text-red-500">Dec 31, 2024</p>
+                                                <p class="text-xs text-red-400">Expired 64 days ago</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs text-slate-400 uppercase mb-1">School-to-Home</p>
+                                                <p class="text-slate-400 text-sm">Not included</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-indigo-600 text-sm">
+                                            <i class="fas fa-redo mr-1"></i> Renew License
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

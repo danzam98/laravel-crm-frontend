@@ -1,17 +1,40 @@
-# Laravel CRM Frontend Mockups
+# Calico Spanish CRM & Organization Portal Mockups
 
-High-fidelity HTML mockups for a full-featured Laravel CRM with eCommerce capabilities.
+High-fidelity HTML mockups for a Laravel-based Membership & Licensing CRM system with Organization Portal.
+
+## Architecture Overview
+
+This system manages curriculum licenses for educational organizations (schools, districts, co-ops). Key concepts:
+
+- **Organizations** - Schools, districts, co-ops that purchase licenses
+- **BillingAccounts** - The paying entity that funds license pools
+- **LicensePools** - Pools of seats with plan type, capacity, and term dates
+- **SeatAssignments** - Links users to license pools for curriculum access
+
+### License Types
+- **Base** - Standard curriculum access
+- **Premium** - Includes School-to-Home Access feature
+
+### License Durations
+- 1-Year, 3-Year, 5-Year, Custom
 
 ## Pages
 
-### CRM Features
-- **Dashboard** (`index.html`) - Overview with stats, revenue charts, pipeline, activity feed, and tasks
-- **Contacts** (`contacts.html`) - Contact management with table view, filters, and status badges
+### Internal Admin CRM
+- **Dashboard** (`index.html`) - Overview with stats, revenue charts, pipeline, activity feed
+- **Contacts** (`contacts.html`) - Contact management with table view, filters, status badges
 - **Deals** (`deals.html`) - Kanban board pipeline for deal management
-
-### eCommerce Features
 - **Products** (`products.html`) - Product catalog with grid view and categories
 - **Orders** (`orders.html`) - Order management with status tracking
+
+### Organization Portal (Customer-Facing)
+- **Dashboard** (`org-portal-dashboard.html`) - Org overview with license cards, seat stats, onboarding tutorial
+- **Licenses** (`org-portal-licenses.html`) - License list with filtering by type (Base/Premium), duration (1yr/3yr/5yr), expiration sorting
+- **School-to-Home** (`org-portal-school-to-home.html`) - Premium feature for configuring student home access:
+  - Custom URL (e.g., calicospanish.com/acme-academy/)
+  - Access password management
+  - School logo upload
+  - Classroom management with teacher assignments and access codes
 
 ## Tech Stack
 
@@ -21,8 +44,6 @@ High-fidelity HTML mockups for a full-featured Laravel CRM with eCommerce capabi
 
 ## Viewing the Mockups
 
-Simply open any HTML file in a browser:
-
 ```bash
 # Using Python
 python -m http.server 8000
@@ -30,24 +51,28 @@ python -m http.server 8000
 # Using PHP
 php -S localhost:8000
 
-# Or just open index.html directly in your browser
+# Or just open any HTML file directly in your browser
 ```
 
 ## Design System
 
 - **Primary Color**: Indigo (#4f46e5)
 - **Sidebar**: Dark indigo (#1e1b4b)
+- **Calico Teal** (Premium): #0d9488
+- **Calico Orange** (Branding): #f97316
 - **Font**: System fonts via Tailwind defaults
-- **Border Radius**: Rounded corners (rounded-lg, rounded-xl)
-- **Shadows**: Subtle shadows (shadow-sm)
 
 ## Planned Pages
 
-- [ ] Companies
-- [ ] Tasks
-- [ ] Calendar
-- [ ] Emails
-- [ ] Inventory
-- [ ] Customers
+### Admin CRM
+- [ ] Companies/Organizations list
+- [ ] License Pools management
+- [ ] Billing Accounts
 - [ ] Analytics/Reports
+- [ ] Audit Logs
+- [ ] Settings
+
+### Organization Portal
+- [ ] Seat Management
+- [ ] Roster / User Invitations
 - [ ] Settings
