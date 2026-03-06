@@ -54,12 +54,13 @@ bun typecheck    # TypeScript check
 | File | Purpose |
 |------|---------|
 | `AGENTS.md` | AI agent rules |
-| `laravel-crm-mockups/IMPLEMENTATION_PLAN.md` | Feature specifications |
+| `docs/IMPLEMENTATION_PLAN.md` | Feature specifications |
 | `src/app/globals.css` | Tailwind @theme tokens |
 | `components.json` | shadcn/ui configuration |
 
 ## Implementation Phases
 
+0. **Build Pipeline Setup** — Vite, Tailwind CSS, dependencies
 1. **Shared Infrastructure** — Design tokens, DataTable, Command Palette
 2. **Admin CRM Core** — Organizations, License Pools
 3. **Admin CRM Extended** — Billing, Analytics, Settings

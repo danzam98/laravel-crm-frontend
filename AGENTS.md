@@ -13,7 +13,7 @@ This project implements the **Calico Spanish CRM & Organization Portal** - a Lar
 
 ## ⚠️ Current Development Phase: MOCKUPS ONLY
 
-**We are currently building HTML mockups (Phases 1-6).**
+**We are currently building HTML mockups (Phases 0-6).**
 
 Do NOT:
 - Create Next.js pages or React components in `src/`
@@ -174,7 +174,7 @@ If there are conflicts, resolve them before proceeding.
 
 1. **Pull latest** from remote
 2. **Make changes** (one logical unit at a time)
-3. **Run checks**: `bun run typecheck && bun run lint`
+3. **Run checks**: For mockups: `npm run build` | For production: `bun run typecheck && bun run lint`
 4. **Commit** with descriptive message
 5. **Push immediately** — do NOT batch multiple commits
 6. **Verify CI** passes with `gh run list --limit 3`
@@ -376,7 +376,7 @@ For wizards (`seats/assign`, `school-to-home/setup`):
 ## Route Structure
 
 > **Note:** Routes below show the production Next.js App Router structure (`src/app/`).
-> Mockup routes are in `laravel-crm-mockups/src/admin/` and `laravel-crm-mockups/src/portal/` as static HTML files.
+> Mockup routes are in `laravel-crm-mockups/src/admin/` and `laravel-crm-mockups/src/portal/` as static HTML files (Vite root is `src/`).
 
 ### Admin CRM Routes (`/admin/`)
 
@@ -424,6 +424,13 @@ For wizards (`seats/assign`, `school-to-home/setup`):
 ## Implementation Phases
 
 ### HTML Mockups (`laravel-crm-mockups/`)
+
+**Phase 0: Build Pipeline Setup**
+- Initialize package.json with Vite and Tailwind CSS
+- Configure vite.config.js for multi-page HTML
+- Set up design tokens and brand colors
+- Install Chart.js, Flatpickr, Lucide Icons
+- Verify dev server and production build work
 
 **Phase 1: Shared Infrastructure**
 - Shared CSS with Tailwind `@theme` tokens

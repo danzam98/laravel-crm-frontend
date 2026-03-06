@@ -56,11 +56,11 @@ php -S localhost:8000
 
 ## Design System
 
-- **Primary Color**: Indigo (#4f46e5)
-- **Sidebar**: Dark indigo (#1e1b4b)
-- **Calico Teal** (Premium): #0d9488
-- **Calico Orange** (Branding): #f97316
-- **Font**: System fonts via Tailwind defaults
+- **Primary Color**: Calico Purple (#482d8b)
+- **Sidebar**: Dark Indigo (#1e1b4b)
+- **Accent**: Calico Green (#9fcc3f)
+- **Calico Teal** (Premium): #68c9c9
+- **Font**: Inter (Google Fonts)
 
 ## Planned Pages
 
